@@ -5,20 +5,40 @@
         <title>Library</title>
     </head>
     <body>
-        <form onsubmit="addBookToLibrary()">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name">
+        <div class="container">
+            
+            <div id="library-cards">
+                <div class="book">
+                    <h1 class="title">The Design of Everyday Things</h1>
+                    <h3 class="author">Don Norman</h3>
+                    <p class="pages">347 pages</p>
+                    <button id="mark-as-read" class="not-read">Mark as Read</button>
+                </div>
+            </div>
+            
+        </div>
+        <div id="input-field">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+
             <label for="author">Author</label>
             <input id="author" type="text" name="author">
+
             <label for="pages">Number of Pages</label>
             <input type="number" id="pages" name="pages">
+
             <label for="isRead">Have you finished reading this book?</label>
-            <input type="radio" id="yes" name="isRead" value="yes">
-            <label for="yes">Yes</label>
-            <input type="radio" id="no" name="isRead" value="no">
-            <label for="no">No</label>
-            <button type="submit">Add New Book</button>
-        </form>
+                <input type="radio" id="yes" name="isRead" value=true>
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" name="isRead" value=false>
+                <label for="no">No</label>
+
+            <button type="submit" id="submit">Add New Book</button>
+        </div>
+
+        <section class="container" id="book-display">
+            
+        </section>
     <script type="text/javascript" src="/script.js"></script>
     </body>
 </html>
