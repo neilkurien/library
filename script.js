@@ -44,9 +44,10 @@ function addBookToLibrary() {
 function updateLibrary() {
 
     //filter through all array elements
-    myLibrary.map(Book => {
+    myLibrary.forEach((Book, index) => {
         const libraryContainer = document.getElementById('library-cards');
         const libraryCards = document.createElement('div');
+        libraryCards.setAttribute('data-index', index);
         libraryCards.classList.add("book");
     
         const cardTitle = document.createElement('h1');
@@ -65,7 +66,8 @@ function updateLibrary() {
         libraryCards.appendChild(cardPages);
         
         const cardIsRead = document.createElement('button');
-        cardIsRead.setAttribute('id', 'mark-as-read');
+        //cardIsRead.setAttribute('id', 'mark-as-read');
+        cardIsRead.classList.add('toggleBtn');
         cardIsRead.addEventListener('onclick', toggleIsRead);
     
         //add different classes depending on isRead status
@@ -80,21 +82,34 @@ function updateLibrary() {
         libraryCards.appendChild(cardIsRead);
         libraryContainer.appendChild(libraryCards);
     });
+
+    function addBtnListeners () {
+        const btns = document.querySelectorAll('.toggleBtn');
+        btns.forEach(button => {
+            button.addEventListener('click', toggleIsRead);
+        })
+    }
+
+    addBtnListeners();
 }
 
 //event listener function for books mark-as-read button
-function toggleIsRead () {
-    if (this.isRead == "true") {
-        this.isRead = "false";
-        cardIsRead.classList.remove("read");
-        cardIsRead.innerHTML = "Mark as Read";
+function toggleIsRead (e) {
+    let index = e.target.parentNode.getAttribute('data-index');
+    let btn = e.target;
+
+    if (myLibrary[index].isRead) {
+        myLibrary[index].isRead = false;
+        console.log(myLibrary[index].isRead);
+        btn.classList.remove("read");
+        btn.innerHTML = "Mark as Read";
     }
-    else if (this.isRead == "false") {
-        this.isRead = "true";
-        cardIsRead.classList.add("read");
-        cardIsRead.innerHTML = "Finished";
+    else {
+        myLibrary[index].isRead = true;
+        console.log(myLibrary[index].isRead);
+        btn.classList.add("read");
+        btn.innerHTML = "Finished";
     }
-    console.log("here");
 }
 
 //update library with new books, generated from the array
