@@ -80,7 +80,6 @@ function updateLibrary() {
         bookCard.appendChild(cardPages);
         
         const cardIsRead = document.createElement('button');
-        //cardIsRead.setAttribute('id', 'mark-as-read');
         cardIsRead.classList.add('toggleBtn');
         cardIsRead.addEventListener('onclick', toggleIsRead);
     
@@ -95,9 +94,11 @@ function updateLibrary() {
         }
         bookCard.appendChild(cardIsRead);
 
-        const deleteBtn = document.createElement('div');
+        const deleteBtn = document.createElement('a');
+        deleteBtn.innerHTML = "Delete";
         deleteBtn.classList.add('deleteBtn');
         deleteBtn.addEventListener('click', deleteBook);
+        bookCard.appendChild(deleteBtn);
 
         bookshelf.appendChild(bookCard);
     });
@@ -135,8 +136,9 @@ function clearDisplay() {
     bookshelf.innerHTML = '';
 }
 
-//add delete button
-
-function deleteBook () {
-    //myLibrary.splice(myLibrary.length)
+function deleteBook (e) {
+    let index = e.target.parentNode.getAttribute('data-index');
+    console.log(index);
+    myLibrary.splice(index, 1);
+    updateLibrary();
 }
