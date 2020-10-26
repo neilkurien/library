@@ -1,9 +1,9 @@
+const bookshelf = document.getElementById('bookshelf');
 const titleInput = document.getElementById('title');
 const authorInput = document.getElementById('author');
 const pagesInput = document.getElementById('pages');
-const isReadInputValues = document.getElementsByName('isRead');
 let isReadInput;
-const bookshelf = document.getElementById('bookshelf');
+const isReadInputValues = document.getElementsByName('isRead');
 
 /* console.log(document.getElementsByName('isRead')); */
 
@@ -11,6 +11,8 @@ let myLibrary = [
     {title : "The Design of Everyday Things", author : "Don Norman", pages : 347, isRead : true},
     {title : "User Friendly", author : "Cliff Kuang", pages : 243, isRead : false}
 ];
+
+updateLibrary();
 
 //Submit Button event listener
 const submit = document.getElementById('submit');
@@ -34,10 +36,21 @@ function checkIsRead () {
     return isReadInput
 }
 
+function clearValues() {
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    //uncheck both radio buttons
+    for (i = 0; i<isReadInputValues.length; i++) {
+        isReadInputValues[i].checked = false;
+    }
+}
+
 function addBookToLibrary() {
     checkIsRead ();
     const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, isReadInput);
     myLibrary.push(newBook);
+    clearValues();
     updateLibrary();
 }
 
@@ -81,6 +94,11 @@ function updateLibrary() {
             cardIsRead.innerHTML = "Mark as Read";
         }
         bookCard.appendChild(cardIsRead);
+
+        const deleteBtn = document.createElement('div');
+        deleteBtn.classList.add('deleteBtn');
+        deleteBtn.addEventListener('click', deleteBook);
+
         bookshelf.appendChild(bookCard);
     });
 
@@ -117,4 +135,8 @@ function clearDisplay() {
     bookshelf.innerHTML = '';
 }
 
-//update library with new books, generated from the array
+//add delete button
+
+function deleteBook () {
+    //myLibrary.splice(myLibrary.length)
+}
