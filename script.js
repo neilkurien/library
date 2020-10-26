@@ -3,7 +3,7 @@ const authorInput = document.getElementById('author');
 const pagesInput = document.getElementById('pages');
 const isReadInputValues = document.getElementsByName('isRead');
 let isReadInput;
-const libraryTable = document.getElementById('library');
+const bookshelf = document.getElementById('bookshelf');
 
 /* console.log(document.getElementsByName('isRead')); */
 
@@ -42,28 +42,29 @@ function addBookToLibrary() {
 }
 
 function updateLibrary() {
+    clearDisplay();
 
     //filter through all array elements
     myLibrary.forEach((Book, index) => {
-        const libraryContainer = document.getElementById('library-cards');
-        const libraryCards = document.createElement('div');
-        libraryCards.setAttribute('data-index', index);
-        libraryCards.classList.add("book");
+
+        const bookCard = document.createElement('div');
+        bookCard.setAttribute('data-index', index);
+        bookCard.classList.add("book");
     
         const cardTitle = document.createElement('h1');
         cardTitle.classList.add("title");
         cardTitle.innerHTML = Book.title;
-        libraryCards.appendChild(cardTitle);
+        bookCard.appendChild(cardTitle);
         
         const cardAuthor = document.createElement('h3');
         cardAuthor.classList.add("author");
         cardAuthor.innerHTML = Book.author;
-        libraryCards.appendChild(cardAuthor);
+        bookCard.appendChild(cardAuthor);
         
         const cardPages = document.createElement('p');
         cardPages.classList.add("pages");
         cardPages.innerHTML = Book.pages;
-        libraryCards.appendChild(cardPages);
+        bookCard.appendChild(cardPages);
         
         const cardIsRead = document.createElement('button');
         //cardIsRead.setAttribute('id', 'mark-as-read');
@@ -79,37 +80,43 @@ function updateLibrary() {
             //cardIsRead.classList.add("");
             cardIsRead.innerHTML = "Mark as Read";
         }
-        libraryCards.appendChild(cardIsRead);
-        libraryContainer.appendChild(libraryCards);
+        bookCard.appendChild(cardIsRead);
+        bookshelf.appendChild(bookCard);
     });
 
+    //add event listeners to every book's buttons
     function addBtnListeners () {
         const btns = document.querySelectorAll('.toggleBtn');
         btns.forEach(button => {
             button.addEventListener('click', toggleIsRead);
-        })
+        });
     }
 
+    //event listener function added to every book's button
+    function toggleIsRead (e) {
+        let index = e.target.parentNode.getAttribute('data-index');
+        let btn = e.target;
+
+        if (myLibrary[index].isRead) {
+            myLibrary[index].isRead = false;
+            console.log(myLibrary[index].isRead);
+            btn.classList.remove("read");
+            btn.innerHTML = "Mark as Read";
+        }
+        else {
+            myLibrary[index].isRead = true;
+            console.log(myLibrary[index].isRead);
+            btn.classList.add("read");
+            btn.innerHTML = "Finished";
+        }
+    }
     addBtnListeners();
 }
 
-//event listener function for books mark-as-read button
-function toggleIsRead (e) {
-    let index = e.target.parentNode.getAttribute('data-index');
-    let btn = e.target;
+function clearDisplay() {
+    //select container
 
-    if (myLibrary[index].isRead) {
-        myLibrary[index].isRead = false;
-        console.log(myLibrary[index].isRead);
-        btn.classList.remove("read");
-        btn.innerHTML = "Mark as Read";
-    }
-    else {
-        myLibrary[index].isRead = true;
-        console.log(myLibrary[index].isRead);
-        btn.classList.add("read");
-        btn.innerHTML = "Finished";
-    }
+    //innerHTML = '';
 }
 
 //update library with new books, generated from the array
