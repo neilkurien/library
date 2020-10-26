@@ -114,9 +114,7 @@ function updateLibrary() {
 }
 
 function clearDisplay() {
-    //select container
-
-    //innerHTML = '';
+    bookshelf.innerHTML = '';
 }
 
 //update library with new books, generated from the array
