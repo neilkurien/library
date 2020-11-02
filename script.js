@@ -5,8 +5,6 @@ const pagesInput = document.getElementById('pages');
 let isReadInput;
 const isReadInputValues = document.getElementsByName('isRead');
 
-/* console.log(document.getElementsByName('isRead')); */
-
 let myLibrary = [
     {title : "The Design of Everyday Things", author : "Don Norman", pages : 347, isRead : true},
     {title : "User Friendly", author : "Cliff Kuang", pages : 243, isRead : false}
@@ -94,7 +92,7 @@ function updateLibrary() {
         }
         bookCard.appendChild(cardIsRead);
 
-        const deleteBtn = document.createElement('a');
+        const deleteBtn = document.createElement('button');
         deleteBtn.innerHTML = "Delete";
         deleteBtn.classList.add('deleteBtn');
         deleteBtn.addEventListener('click', deleteBook);
@@ -142,3 +140,37 @@ function deleteBook (e) {
     myLibrary.splice(index, 1);
     updateLibrary();
 }
+
+//Event listener and function, toggle visiblity of Add New Book form
+const plusCloseBtn = document.getElementById('plus-close-btn');
+const addNewBookBtn = document.getElementById('add-new-book');
+addNewBookBtn.addEventListener('click', openClose);
+plusCloseBtn.addEventListener('click', openClose);
+
+function openClose () {
+    const btnSection = document.getElementById('button-section');
+    const inputField = document.getElementById('input-field');
+
+    console.log(plusCloseBtn.className.baseVal);
+    
+        /* if (plusCloseBtn.className.baseVal == "plus") {
+            console.log('here');
+            btnSection.style.display = "none";
+            inputField.style.display = "flex";
+            plusCloseBtn.setAttribute(class, 'close')
+        } */
+        if (plusCloseBtn.className.baseVal == "plus") {
+            console.log('here');
+            btnSection.style.display = "none";
+            inputField.style.display = "flex";
+            plusCloseBtn.classList.remove('plus');
+            plusCloseBtn.classList.add('close');
+        }
+        else {
+            btnSection.style.display = "flex";
+            inputField.style.display = "none";
+            plusCloseBtn.classList.remove('close');
+            plusCloseBtn.classList.add('plus');
+        }
+}
+//make New Book button that opens form, with close button

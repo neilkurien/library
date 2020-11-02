@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700&family=Montserrat:wght@600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #EDEDED;
+}
+
+body {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+button:active {
+    outline: none;
+}
+
+.serif {
+    font-family: 'Frank Ruhl Libre', serif;
+}
+
+header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+}
+
+header > img {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+    align-self: center;
+}
+
+header > h1 {
+    margin-top: 300px;
+    letter-spacing: 24px;
+    text-transform: uppercase;
+    font-size: 3em;
+    font-weight: 700;
+}
+
+header > p {
+    margin-top: 4px;
+    font-weight: 700;
+}
+
+.divider {
+    margin: 8px auto;
+    border-top: 5px solid black;
+    width: 40%;
+}
+
+.container {
+    width: 100%;
+    margin: 32px 0;
+}
+
+#toggle-section {
+    position: relative;
+}
+
+#button-section {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#add-new-book:focus {
+    outline: none;
+}
+
+#add-new-book {
+    background-color: white;
+    padding: 16px 24px;
+    border: 3px dashed black;
+    position: relative;
+}
+
+#add-new-book:hover {
+    border: 3px dashed #5FCC63;
+    color: #5FCC63;
+    cursor: pointer;
+}
+
+#plus-close-btn {
+    position: absolute;
+    z-index: 2;
+    right: -12px;
+    top: -12px;
+    /* transform: rotate(-90deg);
+    transition: transform 0.5s ease;
+    overflow: visible; */
+}
+
+/* .add-new-book:hover svg {
+    transform: rotate(-45deg);
+} */
+
+#toggle-section:hover .plus > circle {
+    stroke: #5FCC63;
+}
+#toggle-section:hover .plus > path {
+    fill: #5FCC63;
+}
+
+.close {
+    transform: rotate(45deg);
+}
+
+#toggle-section:hover .close > circle {
+    stroke: #F44336;
+}
+#toggle-section:hover .close > path {
+    fill: #F44336;
+}
+
+/* .add-new-book::after {
+    position: absolute;
+    z-index: 2;
+    right: -12px;
+    top: -12px;
+    content: url(images/plus-button.svg);
+}
+
+.add-new-book::after:hover {
+    transform: rotate(45deg);
+} */
+
+#input-field {
+    display: none;
+}
+
+#bookshelf {
+    width: 100%;
+}
