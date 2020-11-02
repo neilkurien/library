@@ -15,30 +15,40 @@
         </header>
         <div class="container">
             <div id="toggle-section">
+
+                <button id="add-new-book">Add New Book</button>
+
                 <svg id="plus-close-btn" class="plus" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="11" cy="11" r="10" fill="white" stroke="black" stroke-width="2"/>
-                    <path d="M15 11.8889H11.9284V15H10.0716V11.8889H7V10.1111H10.0716V7H11.9284V10.1111H15V11.8889Z" fill="black"/>
+                    <circle id="btn-circle" cx="11" cy="11" r="10" fill="white" stroke="black" stroke-width="2"/>
+                    <path id="btn-path" d="M15 11.8889H11.9284V15H10.0716V11.8889H7V10.1111H10.0716V7H11.9284V10.1111H15V11.8889Z" fill="black"/>
                 </svg>
 
-                <section id="button-section">
-                    <button id="add-new-book">Add New Book</button>
-                </section>
+                
     
                 <section id="input-field">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="title">
+
+                    <div class="input-block">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title">
+                    </div>
+
+                    <div class="input-block">
+                        <label for="author">Author</label>
+                        <input id="author" type="text" name="author">
+                    </div>
         
-                    <label for="author">Author</label>
-                    <input id="author" type="text" name="author">
+                    <div class="input-block">
+                        <label for="pages">Number of Pages</label>
+                        <input type="number" id="pages" name="pages">
+                    </div>
         
-                    <label for="pages">Number of Pages</label>
-                    <input type="number" id="pages" name="pages">
-        
-                    <label for="isRead">Have you finished reading this book?</label>
-                        <input type="radio" id="yes" name="isRead" value=true>
-                        <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="isRead" value=false>
-                        <label for="no">No</label>
+                    <div class="input-block">
+                        <label for="isRead">Finished reading?</label><br>
+                            <input type="radio" id="yes" name="isRead" value=true>
+                            <label for="yes">Yes</label>
+                            <input type="radio" id="no" name="isRead" value=false>
+                            <label for="no">No</label>
+                    </div>
         
                     <button type="submit" id="submit">Add New Book</button>
                 </section>

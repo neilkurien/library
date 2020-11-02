@@ -71,9 +71,6 @@ header > p {
 
 #toggle-section {
     position: relative;
-}
-
-#button-section {
     display: flex;
     justify-content: flex-end;
 }
@@ -86,7 +83,6 @@ header > p {
     background-color: white;
     padding: 16px 24px;
     border: 3px dashed black;
-    position: relative;
 }
 
 #add-new-book:hover {
@@ -100,47 +96,41 @@ header > p {
     z-index: 2;
     right: -12px;
     top: -12px;
-    /* transform: rotate(-90deg);
-    transition: transform 0.5s ease;
-    overflow: visible; */
+    transform: rotate(-90deg);
+    transition: transform 1s ease;
+    overflow: visible;
 }
 
-/* .add-new-book:hover svg {
-    transform: rotate(-45deg);
-} */
-
-#toggle-section:hover .plus > circle {
+#add-new-book:hover + #plus-close-btn > circle  {
     stroke: #5FCC63;
 }
-#toggle-section:hover .plus > path {
+
+#add-new-book:hover + #plus-close-btn > path {
     fill: #5FCC63;
 }
 
 .close {
-    transform: rotate(45deg);
+    transform: rotate(-45deg) !important;
 }
 
-#toggle-section:hover .close > circle {
+.close:hover > circle {
     stroke: #F44336;
 }
-#toggle-section:hover .close > path {
+.close:hover > path {
     fill: #F44336;
 }
 
-/* .add-new-book::after {
-    position: absolute;
-    z-index: 2;
-    right: -12px;
-    top: -12px;
-    content: url(images/plus-button.svg);
-}
-
-.add-new-book::after:hover {
-    transform: rotate(45deg);
-} */
-
 #input-field {
     display: none;
+    padding: 24px;
+}
+
+#input-field > * {
+    padding: 8px;
+}
+
+#input-field > input {
+
 }
 
 #bookshelf {

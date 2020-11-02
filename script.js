@@ -148,7 +148,6 @@ addNewBookBtn.addEventListener('click', openClose);
 plusCloseBtn.addEventListener('click', openClose);
 
 function openClose () {
-    const btnSection = document.getElementById('button-section');
     const inputField = document.getElementById('input-field');
 
     console.log(plusCloseBtn.className.baseVal);
@@ -161,13 +160,13 @@ function openClose () {
         } */
         if (plusCloseBtn.className.baseVal == "plus") {
             console.log('here');
-            btnSection.style.display = "none";
+            addNewBookBtn.style.display = "none";
             inputField.style.display = "flex";
             plusCloseBtn.classList.remove('plus');
             plusCloseBtn.classList.add('close');
         }
         else {
-            btnSection.style.display = "flex";
+            addNewBookBtn.style.display = "flex";
             inputField.style.display = "none";
             plusCloseBtn.classList.remove('close');
             plusCloseBtn.classList.add('plus');
