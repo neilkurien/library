@@ -13,60 +13,75 @@
             <div class="divider"></div>
             <p>Designed and coded by Neil Kurien</p>
         </header>
-        <div class="container">
-            <div id="toggle-section">
 
-                <button id="add-new-book">Add New Book</button>
+        <section id="toggle-section" class="container">
 
-                <svg id="plus-close-btn" class="plus" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle id="btn-circle" cx="11" cy="11" r="10" fill="white" stroke="black" stroke-width="2"/>
-                    <path id="btn-path" d="M15 11.8889H11.9284V15H10.0716V11.8889H7V10.1111H10.0716V7H11.9284V10.1111H15V11.8889Z" fill="black"/>
-                </svg>
+            <button id="add-new-book">Add New Book</button>
 
-                
+            <svg id="plus-close-btn" class="plus" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle id="btn-circle" cx="11" cy="11" r="10" fill="white" stroke="black" stroke-width="2"/>
+                <path id="btn-path" d="M15 11.8889H11.9284V15H10.0716V11.8889H7V10.1111H10.0716V7H11.9284V10.1111H15V11.8889Z" fill="black"/>
+            </svg>
+
+            <section id="input-field">
+                <div class="input-block">
+                    <label for="title">Title</label><br>
+                    <input type="text" name="title" id="title">
+                </div>
+
+                <div class="input-block">
+                    <label for="author">Author</label><br>
+                    <input id="author" type="text" name="author">
+                </div>
     
-                <section id="input-field">
+                <div class="input-block">
+                    <label for="pages">Number of Pages</label><br>
+                    <input type="number" id="pages" name="pages">
+                </div>
+    
+                <div class="input-block" id="radio-container">
+                    <label for="isRead">Finished reading?</label>
+                    <div id="radio-btns">
+                        <input type="radio" id="yes" name="isRead" value=true>
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="isRead" value=false>
+                        <label for="no">No</label>
+                    </div>
+                </div>
+    
+                <button type="submit" id="submit">Add Book</button>
+            </section>
 
-                    <div class="input-block">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" id="title">
-                    </div>
+        </section>
 
-                    <div class="input-block">
-                        <label for="author">Author</label>
-                        <input id="author" type="text" name="author">
-                    </div>
-        
-                    <div class="input-block">
-                        <label for="pages">Number of Pages</label>
-                        <input type="number" id="pages" name="pages">
-                    </div>
-        
-                    <div class="input-block">
-                        <label for="isRead">Finished reading?</label><br>
-                            <input type="radio" id="yes" name="isRead" value=true>
-                            <label for="yes">Yes</label>
-                            <input type="radio" id="no" name="isRead" value=false>
-                            <label for="no">No</label>
-                    </div>
-        
-                    <button type="submit" id="submit">Add New Book</button>
-                </section>
-            </div>
+        <section class="container" id="bookshelf">
 
-            <div id="bookshelf">
-                <div class="book">
+                <div data-index="0" class="book">
                     <h1 class="title">The Design of Everyday Things</h1>
                     <h3 class="author">Don Norman</h3>
-                    <p class="pages">347 pages</p>
-                    <button id="mark-as-read" class="not-read">Mark as Read</button>
+                    <p class="pages">347</p>
+                    <button class="toggleBtn">Mark as Read</button>
+                    <button class="deleteBtn">Delete</button>
                 </div>
-            </div>
-        </div>
 
-        <section class="container" id="book-display">
-            
+                <div data-index="1" class="book">
+                    <h1 class="title">User Friendly</h1>
+                    <h3 class="author">Cliff Kuang</h3>
+                    <p class="pages">243</p>
+                    <button class="toggleBtn read">Finished</button>
+                    <button class="deleteBtn">Delete</button>
+                </div>
+
+                <div data-index="2" class="book">
+                    <h1 class="title">Yet Another Book</h1>
+                    <h3 class="author">Neil Kurien</h3>
+                    <p class="pages">457</p>
+                    <button class="toggleBtn">Mark as Read</button>
+                    <button class="deleteBtn">Delete</button>
+                </div>
+
         </section>
+
     <script type="text/javascript" src="/script.js"></script>
     </body>
 </html>

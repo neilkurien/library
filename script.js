@@ -7,7 +7,8 @@ const isReadInputValues = document.getElementsByName('isRead');
 
 let myLibrary = [
     {title : "The Design of Everyday Things", author : "Don Norman", pages : 347, isRead : true},
-    {title : "User Friendly", author : "Cliff Kuang", pages : 243, isRead : false}
+    {title : "User Friendly", author : "Cliff Kuang", pages : 243, isRead : false},
+    {title : "Yet Another Book", author : "Neil Kurien", pages : 457, isRead : false}
 ];
 
 updateLibrary();
@@ -50,6 +51,7 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
     clearValues();
     updateLibrary();
+    openClose();
 }
 
 function updateLibrary() {
@@ -149,21 +151,14 @@ plusCloseBtn.addEventListener('click', openClose);
 
 function openClose () {
     const inputField = document.getElementById('input-field');
-
-    console.log(plusCloseBtn.className.baseVal);
     
-        /* if (plusCloseBtn.className.baseVal == "plus") {
-            console.log('here');
-            btnSection.style.display = "none";
-            inputField.style.display = "flex";
-            plusCloseBtn.setAttribute(class, 'close')
-        } */
         if (plusCloseBtn.className.baseVal == "plus") {
             console.log('here');
             addNewBookBtn.style.display = "none";
             inputField.style.display = "flex";
             plusCloseBtn.classList.remove('plus');
             plusCloseBtn.classList.add('close');
+            plusCloseBtn.addEventListener('click', clearValues);
         }
         else {
             addNewBookBtn.style.display = "flex";
@@ -172,4 +167,7 @@ function openClose () {
             plusCloseBtn.classList.add('plus');
         }
 }
-//make New Book button that opens form, with close button
+
+//When adding new book is cancelled, clear values
+const closeBtn = window.getElementById('plus-close-btn');
+closeBtn.addEventListener('click', clearValues);

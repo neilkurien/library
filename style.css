@@ -25,10 +25,6 @@ button:active {
     outline: none;
 }
 
-.serif {
-    font-family: 'Frank Ruhl Libre', serif;
-}
-
 header {
     position: relative;
     display: flex;
@@ -94,8 +90,8 @@ header > p {
 #plus-close-btn {
     position: absolute;
     z-index: 2;
-    right: -12px;
-    top: -12px;
+    right: -10px;
+    top: -10px;
     transform: rotate(-90deg);
     transition: transform 1s ease;
     overflow: visible;
@@ -120,19 +116,73 @@ header > p {
     fill: #F44336;
 }
 
+.close:hover + #input-field {
+    border: 3px solid #F44336;
+}
+
 #input-field {
     display: none;
+    width: 100%;
+    border: 3px solid black;
+    background-color: white;
     padding: 24px;
+    justify-content: space-between;
 }
 
 #input-field > * {
     padding: 8px;
 }
 
-#input-field > input {
+.input-block > input {
+    margin-top: 4px;
+    height: 16px;
+    width: 175px;
+    border: 2px solid black;
+}
 
+#radio-btns {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+}
+
+#radio-btns > label {
+    margin-left: 4px;
+}
+
+#no {
+    margin-left: 8px;
+}
+
+#submit {
+    background-color: white;
+    color: #5FCC63;
+    border: 3px solid #5FCC63;
+    margin: 8px 0;
+    padding: 0 32px;
+}
+
+#submit:hover {
+    background-color: #5FCC63;
+    color: white;
+    cursor: pointer;
 }
 
 #bookshelf {
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-gap: 80px;
 }
+
+.book {
+    border: 3px solid black;
+    background-color: white;
+    padding: 16px 24px;
+    position: relative;
+}
+
+.title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.5em;
+}
+
