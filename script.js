@@ -69,33 +69,38 @@ function updateLibrary() {
         cardTitle.innerHTML = Book.title;
         bookCard.appendChild(cardTitle);
         
+        const row2 = document.createElement('div');
+        row2.classList.add('row2');
+
         const cardAuthor = document.createElement('h3');
         cardAuthor.classList.add("author");
         cardAuthor.innerHTML = Book.author;
-        bookCard.appendChild(cardAuthor);
+        row2.appendChild(cardAuthor);
         
         const cardPages = document.createElement('p');
         cardPages.classList.add("pages");
-        cardPages.innerHTML = Book.pages;
-        bookCard.appendChild(cardPages);
+        cardPages.innerHTML = `${Book.pages} pages`;
+        row2.appendChild(cardPages);
         
+        bookCard.appendChild(row2);
+
         const cardIsRead = document.createElement('button');
         cardIsRead.classList.add('toggleBtn');
         cardIsRead.addEventListener('onclick', toggleIsRead);
+        cardIsRead.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z" fill="black"/></svg>`;
     
         //add different classes depending on isRead status
         if (Book.isRead == "true") {
             cardIsRead.classList.add("read");
-            cardIsRead.innerHTML = "Finished";
+            //cardIsRead.innerHTML = "Finished";
         }
         else {
-            //cardIsRead.classList.add("");
-            cardIsRead.innerHTML = "Mark as Read";
+            //cardIsRead.innerHTML = "Mark as Read";
         }
         bookCard.appendChild(cardIsRead);
 
         const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = "Delete";
+        deleteBtn.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M1.25 8.74999C1.25 9.43907 1.8106 9.99998 2.49999 9.99998H7.49999C8.18938 9.99998 8.74998 9.43907 8.74998 8.74999V2.5H1.25V8.74999Z" fill="black"/><path d="M6.24999 0.624995V0H3.74999V0.624995H0.625V1.87499H9.37499V0.624995H6.24999Z" fill="black"/></g></svg>`;
         deleteBtn.classList.add('deleteBtn');
         deleteBtn.addEventListener('click', deleteBook);
         bookCard.appendChild(deleteBtn);

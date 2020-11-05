@@ -170,19 +170,53 @@ header > p {
 
 #bookshelf {
     display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-auto-rows: minmax(min-content, max-content);
     grid-gap: 80px;
 }
 
 .book {
-    border: 3px solid black;
+    border: 2px solid black;
     background-color: white;
     padding: 16px 24px;
     position: relative;
+    /* height: auto; */
 }
 
 .title {
     font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.5em;
+    font-size: 18px;
 }
 
+.author, .pages {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.row2 {
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #626262;
+}
+
+.toggleBtn, .deleteBtn {
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: absolute;
+    right: -12px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.toggleBtn {
+    top: -12px;
+}
+
+.deleteBtn {
+    bottom: -12px;
+}
