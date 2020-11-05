@@ -86,11 +86,12 @@ function updateLibrary() {
 
         const cardIsRead = document.createElement('button');
         cardIsRead.classList.add('toggleBtn');
-        cardIsRead.addEventListener('onclick', toggleIsRead);
-        cardIsRead.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z" fill="black"/></svg>`;
-    
+        //cardIsRead.addEventListener('click', toggleIsRead);
+        
+        cardIsRead.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" class="tick" fill="black" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z"/></svg>`;
+
         //add different classes depending on isRead status
-        if (Book.isRead == "true") {
+        if (Book.isRead == true) {
             cardIsRead.classList.add("read");
             //cardIsRead.innerHTML = "Finished";
         }
@@ -100,7 +101,7 @@ function updateLibrary() {
         bookCard.appendChild(cardIsRead);
 
         const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M1.25 8.74999C1.25 9.43907 1.8106 9.99998 2.49999 9.99998H7.49999C8.18938 9.99998 8.74998 9.43907 8.74998 8.74999V2.5H1.25V8.74999Z" fill="black"/><path d="M6.24999 0.624995V0H3.74999V0.624995H0.625V1.87499H9.37499V0.624995H6.24999Z" fill="black"/></g></svg>`;
+        deleteBtn.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="bin" fill="black"><path d="M1.25 8.74999C1.25 9.43907 1.8106 9.99998 2.49999 9.99998H7.49999C8.18938 9.99998 8.74998 9.43907 8.74998 8.74999V2.5H1.25V8.74999Z"/><path d="M6.24999 0.624995V0H3.74999V0.624995H0.625V1.87499H9.37499V0.624995H6.24999Z"/></g></svg>`;
         deleteBtn.classList.add('deleteBtn');
         deleteBtn.addEventListener('click', deleteBook);
         bookCard.appendChild(deleteBtn);
@@ -118,20 +119,20 @@ function updateLibrary() {
 
     //event listener function added to every book's button
     function toggleIsRead (e) {
-        let index = e.target.parentNode.getAttribute('data-index');
-        let btn = e.target;
-
+        let index = this.parentNode.getAttribute('data-index');
+        let btn = this;
+        
         if (myLibrary[index].isRead) {
             myLibrary[index].isRead = false;
             console.log(myLibrary[index].isRead);
             btn.classList.remove("read");
-            btn.innerHTML = "Mark as Read";
+            btn.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z" class="tick" fill="black"/></svg>`;
         }
         else {
             myLibrary[index].isRead = true;
             console.log(myLibrary[index].isRead);
             btn.classList.add("read");
-            btn.innerHTML = "Finished";
+            btn.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z" class="tick" fill="#5FCC63"/></svg>`;
         }
     }
     addBtnListeners();
@@ -143,7 +144,6 @@ function clearDisplay() {
 
 function deleteBook (e) {
     let index = e.target.parentNode.getAttribute('data-index');
-    console.log(index);
     myLibrary.splice(index, 1);
     updateLibrary();
 }
@@ -174,5 +174,5 @@ function openClose () {
 }
 
 //When adding new book is cancelled, clear values
-const closeBtn = window.getElementById('plus-close-btn');
+const closeBtn = document.getElementById('plus-close-btn');
 closeBtn.addEventListener('click', clearValues);

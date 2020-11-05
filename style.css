@@ -21,7 +21,7 @@ button {
     font-weight: 600;
 }
 
-button:active {
+button:active, button:visited, button:focus, button:focus-visible {
     outline: none;
 }
 
@@ -66,6 +66,7 @@ header > p {
 }
 
 #toggle-section {
+    width: 99%;
     position: relative;
     display: flex;
     justify-content: flex-end;
@@ -78,11 +79,11 @@ header > p {
 #add-new-book {
     background-color: white;
     padding: 16px 24px;
-    border: 3px dashed black;
+    border: 2px dashed black;
 }
 
 #add-new-book:hover {
-    border: 3px dashed #5FCC63;
+    border: 2px dashed #5FCC63;
     color: #5FCC63;
     cursor: pointer;
 }
@@ -117,13 +118,13 @@ header > p {
 }
 
 .close:hover + #input-field {
-    border: 3px solid #F44336;
+    border: 2px solid #F44336;
 }
 
 #input-field {
     display: none;
     width: 100%;
-    border: 3px solid black;
+    border: 2px solid black;
     background-color: white;
     padding: 24px;
     justify-content: space-between;
@@ -157,7 +158,7 @@ header > p {
 #submit {
     background-color: white;
     color: #5FCC63;
-    border: 3px solid #5FCC63;
+    border: 2px solid #5FCC63;
     margin: 8px 0;
     padding: 0 32px;
 }
@@ -170,9 +171,10 @@ header > p {
 
 #bookshelf {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 300px));
     grid-auto-rows: minmax(min-content, max-content);
     grid-gap: 80px;
+    justify-content: center;
 }
 
 .book {
@@ -180,7 +182,7 @@ header > p {
     background-color: white;
     padding: 16px 24px;
     position: relative;
-    /* height: auto; */
+    height: fit-content;
 }
 
 .title {
@@ -211,12 +213,49 @@ header > p {
     right: -12px;
     z-index: 2;
     cursor: pointer;
+    transition: transform 0.5s ease;
 }
 
 .toggleBtn {
-    top: -12px;
+    top: -11px;
 }
 
 .deleteBtn {
     bottom: -12px;
+}
+
+.toggleBtn:hover {
+    border: 2px solid #5FCC63;
+    transform: rotate(15deg);
+}
+
+.toggleBtn:hover .tick {
+    fill: #5FCC63;
+}
+
+.deleteBtn:hover {
+    border: 2px solid #F44336;
+    transform: rotate(15deg);
+}
+
+.deleteBtn:hover .bin {
+    fill: #F44336;
+}
+
+.deleteBtn:hover .book {
+    border: 2px solid #F44336;
+}
+
+.read {
+    background-color: #5FCC63;
+    border: none;
+}
+
+.read:hover {
+    border: 2px solid #5FCC63;
+    background-color: white;
+}
+
+.read .tick {
+    fill: white;
 }
