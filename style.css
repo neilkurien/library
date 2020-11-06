@@ -42,7 +42,7 @@ header > img {
 }
 
 header > h1 {
-    margin-top: 300px;
+    margin: 300px 0 0 24px;
     letter-spacing: 24px;
     text-transform: uppercase;
     font-size: 3em;
@@ -58,6 +58,16 @@ header > p {
     margin: 8px auto;
     border-top: 5px solid black;
     width: 40%;
+}
+
+@media screen and (max-width: 600px) {
+    header > h1 {
+        margin: 200px 0 0 24px;
+        font-size: 1.5em;
+    }
+    .divider {
+        border-top: 3px solid black;
+    }
 }
 
 .container {
@@ -96,6 +106,7 @@ header > p {
     transform: rotate(-90deg);
     transition: transform 1s ease;
     overflow: visible;
+    cursor: pointer;
 }
 
 #add-new-book:hover + #plus-close-btn > circle  {
@@ -177,12 +188,16 @@ header > p {
     justify-content: center;
 }
 
+.book-container {
+    position: relative;
+    height: fit-content;
+}
+
 .book {
     border: 2px solid black;
     background-color: white;
     padding: 16px 24px;
     position: relative;
-    height: fit-content;
 }
 
 .title {
@@ -242,7 +257,7 @@ header > p {
     fill: #F44336;
 }
 
-.deleteBtn:hover .book {
+.deleteBtn:hover ~ .book {
     border: 2px solid #F44336;
 }
 
@@ -251,11 +266,23 @@ header > p {
     border: none;
 }
 
+.read .tick {
+    fill: white;
+}
+
 .read:hover {
-    border: 2px solid #5FCC63;
+    border: 2px solid black;
     background-color: white;
 }
 
-.read .tick {
-    fill: white;
+/* .read:hover ~ .book {
+    border: 2px solid black !important;
+} */
+
+.read:hover .tick {
+    fill: black;
+}
+
+.greenOutline {
+    border: 2px solid #5FCC63;
 }

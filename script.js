@@ -6,9 +6,9 @@ let isReadInput;
 const isReadInputValues = document.getElementsByName('isRead');
 
 let myLibrary = [
-    {title : "The Design of Everyday Things", author : "Don Norman", pages : 347, isRead : true},
-    {title : "User Friendly", author : "Cliff Kuang", pages : 243, isRead : false},
-    {title : "Yet Another Book", author : "Neil Kurien", pages : 457, isRead : false}
+    {title : "Blood, Sweat, and Pixels", author : "Jason Schreier", pages : 304, isRead : "false"},
+    {title : "Invisible Women", author : "Caroline Criado Perez", pages : 410, isRead : "false"},
+    {title : "Plugged", author : "Eoin Colfer", pages : 256, isRead : "true"}
 ];
 
 updateLibrary();
@@ -41,17 +41,19 @@ function clearValues() {
     pagesInput.value = '';
     //uncheck both radio buttons
     for (i = 0; i<isReadInputValues.length; i++) {
-        isReadInputValues[i].checked = false;
+        isReadInputValues[i].checked = "false";
     }
 }
 
 function addBookToLibrary() {
     checkIsRead ();
+    console.log(isReadInput);
     const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, isReadInput);
     myLibrary.push(newBook);
     clearValues();
     updateLibrary();
     openClose();
+    console.log(myLibrary);
 }
 
 function updateLibrary() {
@@ -62,12 +64,34 @@ function updateLibrary() {
 
         const bookCard = document.createElement('div');
         bookCard.setAttribute('data-index', index);
-        bookCard.classList.add("book");
+        bookCard.classList.add("book-container");
+
+        const bookOutline = document.createElement('div');
+        bookOutline.classList.add("book");
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="bin" fill="black"><path d="M1.25 8.74999C1.25 9.43907 1.8106 9.99998 2.49999 9.99998H7.49999C8.18938 9.99998 8.74998 9.43907 8.74998 8.74999V2.5H1.25V8.74999Z"/><path d="M6.24999 0.624995V0H3.74999V0.624995H0.625V1.87499H9.37499V0.624995H6.24999Z"/></g></svg>`;
+        deleteBtn.classList.add('deleteBtn');
+        deleteBtn.addEventListener('click', deleteBook);
+        bookCard.appendChild(deleteBtn);
+
+        const cardIsRead = document.createElement('button');
+        cardIsRead.classList.add('toggleBtn');
+        
+        cardIsRead.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" class="tick" fill="black" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z"/></svg>`;
+
+        //add different classes depending on isRead status
+        if (Book.isRead == "true") {
+            cardIsRead.classList.add("read");
+            bookOutline.classList.add("greenOutline");
+        }
+        
+        bookCard.appendChild(cardIsRead);
     
         const cardTitle = document.createElement('h1');
         cardTitle.classList.add("title");
         cardTitle.innerHTML = Book.title;
-        bookCard.appendChild(cardTitle);
+        bookOutline.appendChild(cardTitle);
         
         const row2 = document.createElement('div');
         row2.classList.add('row2');
@@ -82,29 +106,9 @@ function updateLibrary() {
         cardPages.innerHTML = `${Book.pages} pages`;
         row2.appendChild(cardPages);
         
-        bookCard.appendChild(row2);
+        bookOutline.appendChild(row2);
 
-        const cardIsRead = document.createElement('button');
-        cardIsRead.classList.add('toggleBtn');
-        //cardIsRead.addEventListener('click', toggleIsRead);
-        
-        cardIsRead.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" class="tick" fill="black" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z"/></svg>`;
-
-        //add different classes depending on isRead status
-        if (Book.isRead == true) {
-            cardIsRead.classList.add("read");
-            //cardIsRead.innerHTML = "Finished";
-        }
-        else {
-            //cardIsRead.innerHTML = "Mark as Read";
-        }
-        bookCard.appendChild(cardIsRead);
-
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="bin" fill="black"><path d="M1.25 8.74999C1.25 9.43907 1.8106 9.99998 2.49999 9.99998H7.49999C8.18938 9.99998 8.74998 9.43907 8.74998 8.74999V2.5H1.25V8.74999Z"/><path d="M6.24999 0.624995V0H3.74999V0.624995H0.625V1.87499H9.37499V0.624995H6.24999Z"/></g></svg>`;
-        deleteBtn.classList.add('deleteBtn');
-        deleteBtn.addEventListener('click', deleteBook);
-        bookCard.appendChild(deleteBtn);
+        bookCard.appendChild(bookOutline);
 
         bookshelf.appendChild(bookCard);
     });
@@ -118,22 +122,16 @@ function updateLibrary() {
     }
 
     //event listener function added to every book's button
-    function toggleIsRead (e) {
+    function toggleIsRead () {
         let index = this.parentNode.getAttribute('data-index');
         let btn = this;
-        
-        if (myLibrary[index].isRead) {
-            myLibrary[index].isRead = false;
-            console.log(myLibrary[index].isRead);
-            btn.classList.remove("read");
-            btn.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z" class="tick" fill="black"/></svg>`;
-        }
-        else {
-            myLibrary[index].isRead = true;
-            console.log(myLibrary[index].isRead);
-            btn.classList.add("read");
-            btn.innerHTML = `<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4.88285L4.10933 9L12 1.11716L10.8672 0L4.10933 6.74996L1.11715 3.75782L0 4.88285Z" class="tick" fill="#5FCC63"/></svg>`;
-        }
+        let cardOutline = this.nextSibling;
+
+        if (myLibrary[index].isRead == "true") myLibrary[index].isRead == "false";
+        else if (myLibrary[index].isRead == "false") myLibrary[index].isRead == "true";
+
+        btn.classList.toggle("read");
+        cardOutline.classList.toggle("greenOutline");
     }
     addBtnListeners();
 }
@@ -158,7 +156,6 @@ function openClose () {
     const inputField = document.getElementById('input-field');
     
         if (plusCloseBtn.className.baseVal == "plus") {
-            console.log('here');
             addNewBookBtn.style.display = "none";
             inputField.style.display = "flex";
             plusCloseBtn.classList.remove('plus');
